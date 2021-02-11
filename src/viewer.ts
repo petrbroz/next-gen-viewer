@@ -131,6 +131,15 @@ export class Viewer extends EventTarget {
     }
 
     /**
+     * Removes all loaded models.
+     */
+    public removeModels() {
+        for (const child of this.scene.children) {
+            this.removeModel(child as Model);
+        }
+    }
+
+    /**
      * Start the rendering loop.
      */
     public start() {

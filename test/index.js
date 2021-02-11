@@ -1,12 +1,18 @@
 import { Viewer, Model } from '../lib/index.js';
 
-let viewer = new Viewer(document.getElementById('viewport'));
+const viewer = new Viewer(document.getElementById('viewport'));
 viewer.start();
 
-// Load a model and start the rendering loop
-Model.load('models/rac_basic_sample_project/glb-draco/model.glb', { draco: true, metadata: true })
-    .then(model => viewer.addModel(model))
-    .catch(err => alert(err));
+const dropdown = document.getElementById('model');
+dropdown.addEventListener('change', function () {
+    viewer.removeModels();
+    Model.load(dropdown.value, { draco: true, metadata: true })
+        .then(model => {
+            viewer.addModel(model);
+        })
+        .catch(err => alert(err));
+});
+dropdown.dispatchEvent(new Event('change'));
 
 // When an object is selected in the viewer, show its metadata in a simple UI
 viewer.addEventListener('selection-changed', async function () {
