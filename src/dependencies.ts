@@ -9,6 +9,10 @@ export {
 } from 'https://unpkg.com/three@0.125.2/examples/jsm/loaders/GLTFLoader.js';
 
 export {
+    DRACOLoader
+} from 'https://unpkg.com/three@0.125.2/examples/jsm/loaders/DRACOLoader.js';
+
+export {
     EXRLoader
 } from 'https://unpkg.com/three@0.125.2/examples/jsm/loaders/EXRLoader.js';
 

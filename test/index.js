@@ -4,7 +4,7 @@ let viewer = new Viewer(document.getElementById('viewport'));
 viewer.start();
 
 // Load a model and start the rendering loop
-Model.load('models/rac_basic_sample_project/glb/model.glb')
+Model.load('models/rac_basic_sample_project/glb-draco/model.glb', { draco: true })
     .then(model => viewer.addModel(model))
     .catch(err => alert(err));
 

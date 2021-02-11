@@ -1,5 +1,12 @@
-import { THREE, GLTFLoader } from './dependencies.js';
+import { THREE, GLTFLoader, DRACOLoader } from './dependencies.js';
 import { Metadata } from './metadata.js';
+
+export interface IModelLoadOptions {
+    /**
+     * Load the model using the Draco compression.
+     */
+    draco?: boolean;
+}
 
 /**
  * Model representing a specific viewable output of a design.
@@ -13,11 +20,17 @@ export class Model extends THREE.Object3D {
 
     /**
      * Loads glTF model from specific location.
-     * @param url Model location.
+     * @param {string} url Model location.
+     * @param {IModelLoadOptions} [options] Additional loading options.
      */
-    public static load(url: string): Promise<Model> {
+    public static load(url: string, options?: IModelLoadOptions): Promise<Model> {
         return new Promise<Model>(function (resolve, reject) {
             const loader = new GLTFLoader();
+            if (options?.draco) {
+                const draco = new DRACOLoader();
+                draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
+                loader.setDRACOLoader(draco);
+            }
             loader.load(url, function onLoad(gltf) {
                 const baseUrl = url.substr(0, url.lastIndexOf('/'));
                 const model = new Model(baseUrl);
