@@ -6,13 +6,19 @@ export interface IModelLoadOptions {
      * Load the model using the Draco compression.
      */
     draco?: boolean;
+
+    /**
+     * Load metadata pre-emptively. Otherwise, the metadata will be loaded
+     * when it is first requested.
+     */
+    metadata?: boolean;
 }
 
 /**
  * Model representing a specific viewable output of a design.
  */
 export class Model extends THREE.Object3D {
-    protected metadata?: Metadata;
+    protected metadata?: Promise<Metadata>;
 
     protected constructor(protected baseUrl: string) {
         super();
@@ -35,6 +41,9 @@ export class Model extends THREE.Object3D {
                 const baseUrl = url.substr(0, url.lastIndexOf('/'));
                 const model = new Model(baseUrl);
                 model.children.push(gltf.scene);
+                if (options?.metadata) {
+                    model.metadata = Metadata.load(baseUrl + '/..');
+                }
                 resolve(model);
             }, function onProgress(ev) {
                 console.log((ev.loaded / ev.total * 100) + '% loaded');
@@ -47,9 +56,9 @@ export class Model extends THREE.Object3D {
     /**
      * Retrieves model metadata.
      */
-    async getMetadata(): Promise<Metadata> {
+    getMetadata(): Promise<Metadata> {
         if (!this.metadata) {
-            this.metadata = await Metadata.load(this.baseUrl + '/..');
+            this.metadata = Metadata.load(this.baseUrl + '/..');
         }
         return this.metadata;
     }
