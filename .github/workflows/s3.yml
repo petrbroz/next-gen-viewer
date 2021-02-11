@@ -34,10 +34,13 @@ jobs:
       - name: Build
         run: npm run build && npm run docs && mkdir build && cp -R env lib test build
 
+      - name: Compress
+        run: find build -type f -exec gzip -9 {} \; -exec mv {}.gz {} \;
+
       - name: Deploy
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --acl public-read --follow-symlinks --delete
+          args: --acl public-read --follow-symlinks --delete --content-encoding "gzip"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
