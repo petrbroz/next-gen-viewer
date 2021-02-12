@@ -1,8 +1,8 @@
-import { Viewer, Model } from '../lib/index.js';
+import { Viewer, Model } from '../../lib/index.js';
 
 const models = document.getElementById('models');
 const properties = document.getElementById('properties');
-const viewer = new Viewer(document.getElementById('viewport'));
+const viewer = new Viewer(document.getElementById('viewport'), { assetsUrl: '../../assets' });
 viewer.start();
 
 // Load model selected in the dropdown

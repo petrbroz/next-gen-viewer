@@ -1,0 +1,15 @@
+{
+  "name": "bundled-js",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "next-gen-viewer": "file:../.."
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.1.1",
+    "rollup": "^2.38.5"
+  }
+}

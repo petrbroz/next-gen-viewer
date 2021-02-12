@@ -8,7 +8,7 @@ Experimental next-gen Forge Viewer exploring different ways of modernizing or im
 - supporting TypeScript
 - better supporting multi-model
 
-> The `master` branch is automatically deployed to S3 and the test page can be accessed via https://petrbroz.s3-us-west-1.amazonaws.com/next-gen-viewer/test/index.html.
+> The `master` branch is automatically deployed to S3 and a basic test page can be accessed via https://petrbroz.s3-us-west-1.amazonaws.com/next-gen-viewer/test/basic/index.html.
 
 ## Notes
 

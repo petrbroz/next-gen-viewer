@@ -32,7 +32,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build && npm run docs && mkdir build && cp -R env lib test build
+        run: npm run build && npm run docs && mkdir build && cp -R assets lib test build
 
       - name: Compress
         run: find build -type f -exec gzip -9 {} \; -exec mv {}.gz {} \;

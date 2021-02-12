@@ -1,6 +1,11 @@
 import { THREE, OrbitControls, EXRLoader, EffectComposer, RenderPass, OutlinePass } from './dependencies.js';
 import { Model } from './model.js';
 
+export interface IViewerOptions {
+    /** Optional URL for fetching viewer assets such as environment maps. */
+    assetsUrl?: string;
+}
+
 export interface ISelectionItem {
     modelId: number;
     objectId: number;
@@ -22,8 +27,9 @@ export class Viewer extends EventTarget {
     /**
      * Initializes new viewer in given canvas element.
      * @param {HTMLCanvasElement} canvas Hosting canvas element.
+     * @param {IViewerOptions} [options] Additional viewer options.
      */
-    constructor(protected canvas: HTMLCanvasElement) {
+    constructor(protected canvas: HTMLCanvasElement, protected options?: IViewerOptions) {
         super();
         this.scene = this.initializeScene();
         this.camera = this.initializeCamera();
@@ -55,11 +61,12 @@ export class Viewer extends EventTarget {
         renderer.outputEncoding = THREE.sRGBEncoding;
         renderer.toneMappingExposure = 1.5;
 
+        const assetsUrl = this.options?.assetsUrl || '../assets';
         const pmremGenerator = new THREE.PMREMGenerator(renderer);
         pmremGenerator.compileEquirectangularShader();
         new EXRLoader()
             .setDataType(THREE.FloatType)
-            .load('../env/neurathen_rock_castle_1k.exr', (texture) => {
+            .load(assetsUrl + '/environments/neurathen_rock_castle_1k.exr', (texture) => {
                 const exrCubeRenderTarget = pmremGenerator.fromEquirectangular(texture);
                 this.envMap = exrCubeRenderTarget.texture;
                 this.updateEnvironment();
