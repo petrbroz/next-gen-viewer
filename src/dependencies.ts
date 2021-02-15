@@ -27,3 +27,7 @@ export {
 export {
     OutlinePass
 } from 'https://unpkg.com/three@0.125.2/examples/jsm/postprocessing/OutlinePass.js';
+
+export {
+    MeshoptDecoder
+} from 'https://unpkg.com/three@0.125.2/examples/jsm/libs/meshopt_decoder.module.js';

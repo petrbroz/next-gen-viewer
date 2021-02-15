@@ -1,4 +1,4 @@
-import { THREE, GLTFLoader, DRACOLoader } from './dependencies.js';
+import { THREE, GLTFLoader, DRACOLoader, MeshoptDecoder } from './dependencies.js';
 import { Metadata } from './metadata.js';
 
 export interface IModelLoadOptions {
@@ -37,6 +37,7 @@ export class Model extends THREE.Object3D {
                 draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
                 loader.setDRACOLoader(draco);
             }
+            loader.setMeshoptDecoder(MeshoptDecoder);
             loader.load(url, function onLoad(gltf) {
                 const baseUrl = url.substr(0, url.lastIndexOf('/'));
                 const model = new Model(baseUrl);

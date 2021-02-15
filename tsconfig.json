@@ -52,7 +52,8 @@
         "https://unpkg.com/three@0.125.2/examples/jsm/loaders/EXRLoader.js": ["./node_modules/@types/three/examples/jsm/loaders/EXRLoader.d.ts"],
         "https://unpkg.com/three@0.125.2/examples/jsm/postprocessing/EffectComposer.js": ["./node_modules/@types/three/examples/jsm/postprocessing/EffectComposer.d.ts"],
         "https://unpkg.com/three@0.125.2/examples/jsm/postprocessing/RenderPass.js": ["./node_modules/@types/three/examples/jsm/postprocessing/RenderPass.d.ts"],
-        "https://unpkg.com/three@0.125.2/examples/jsm/postprocessing/OutlinePass.js": ["./node_modules/@types/three/examples/jsm/postprocessing/OutlinePass.d.ts"]
+        "https://unpkg.com/three@0.125.2/examples/jsm/postprocessing/OutlinePass.js": ["./node_modules/@types/three/examples/jsm/postprocessing/OutlinePass.d.ts"],
+        "https://unpkg.com/three@0.125.2/examples/jsm/libs/meshopt_decoder.module.js": ["./src/declarations.d.ts"]
     },                                        /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
