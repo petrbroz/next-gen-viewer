@@ -1,0 +1,18 @@
+{
+  "name": "bundled-ts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "next-gen-viewer": "file:../.."
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.1.1",
+    "@rollup/plugin-typescript": "^8.2.0",
+    "rollup": "^2.38.5",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.5"
+  }
+}
